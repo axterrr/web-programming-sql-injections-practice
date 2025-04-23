@@ -26,6 +26,10 @@ async function deleteOrder(req, res) {
     res.status(204).json();
 }
 
+async function getOrdersByClientId(req, res) {
+    const result = await orderService.getOrdersByClientId(req.params.clientId);
+    res.status(200).json(result);
+}
 
 module.exports = {
     getAllOrders,
@@ -33,4 +37,5 @@ module.exports = {
     createOrder,
     updateOrder,
     deleteOrder,
+    getOrdersByClientId
 };

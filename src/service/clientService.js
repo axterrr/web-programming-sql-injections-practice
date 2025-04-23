@@ -13,7 +13,6 @@ async function createClient(client) {
 }
 
 async function updateClient(client) {
-    client.password = await bcrypt.hash(client.password, 10);
     return await clientDAO.update(client);
 }
 

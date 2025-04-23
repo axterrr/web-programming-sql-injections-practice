@@ -1,4 +1,4 @@
-CREATE TABLE client (
+CREATE TABLE IF NOT EXISTS client (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -8,14 +8,14 @@ CREATE TABLE client (
     password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE product (
+CREATE TABLE IF NOT EXISTS product (
      id INT AUTO_INCREMENT PRIMARY KEY,
      name VARCHAR(100) NOT NULL,
      description VARCHAR(1000) NOT NULL,
      price DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE order_ (
+CREATE TABLE IF NOT EXISTS order_ (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NULL,
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -23,7 +23,7 @@ CREATE TABLE order_ (
     FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE SET NULL
 );
 
-CREATE TABLE order_product (
+CREATE TABLE IF NOT EXISTS order_product (
    id INT AUTO_INCREMENT PRIMARY KEY,
    product_id INT NULL,
    order_id INT NOT NULL,

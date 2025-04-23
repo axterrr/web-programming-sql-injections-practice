@@ -11,10 +11,11 @@ async function findById(id) {
 }
 
 async function create(product) {
-    const [result] = await pool.query(
-        'INSERT INTO product (name, description, price) VALUES (?, ?, ?)',
-        [product.name, product.description, product.price]
-    );
+    const query = `
+        INSERT INTO product (name, description, price) 
+        VALUES ('${product.name}', '${product.description}', '${product.price}')
+    `;
+    const [result] = await pool.query(query);
     return findById(result.insertId);
 }
 
