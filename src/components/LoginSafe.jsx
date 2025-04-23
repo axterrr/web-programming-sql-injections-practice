@@ -19,7 +19,7 @@ const Login = () => {
             });
 
             const data = await response.json();
-            if (response.ok && email === "admin") {
+            if (response.ok) {
                 localStorage.setItem('token', data);
                 navigate('/clients');
             } else {

@@ -36,6 +36,12 @@ async function findByCredentials(credentials) {
     return result[0];
 }
 
+async function findByCredentialsSafe(credentials) {
+    let query = 'SELECT * FROM client WHERE email = ? AND password = ?';
+    const [result] = await pool.query(query, [credentials.email, credentials.password]);
+    return result[0];
+}
+
 module.exports = {
     findAll,
     findById,
@@ -43,4 +49,5 @@ module.exports = {
     update,
     remove,
     findByCredentials,
+    findByCredentialsSafe,
 };
