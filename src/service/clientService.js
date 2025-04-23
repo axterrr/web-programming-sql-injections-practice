@@ -1,5 +1,4 @@
 const clientDAO = require('../dao/clientDAO');
-const bcrypt = require("bcryptjs");
 
 async function getAllClients() {
     return await clientDAO.findAll();
@@ -10,7 +9,6 @@ async function getClient(id) {
 }
 
 async function createClient(client) {
-    client.password = await bcrypt.hash(client.password, 10);
     return await clientDAO.create(client);
 }
 

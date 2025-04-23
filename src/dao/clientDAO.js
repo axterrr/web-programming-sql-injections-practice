@@ -30,8 +30,9 @@ async function remove(id) {
     await pool.query('DELETE FROM client WHERE id = ?', [id]);
 }
 
-async function findByEmail(email) {
-    const [result] = await pool.query('SELECT * FROM client WHERE email = ?', [email]);
+async function findByCredentials(credentials) {
+    let query = `SELECT * FROM client WHERE email = '${credentials.email}' AND password = '${credentials.password}'`;
+    const [result] = await pool.query(query);
     return result[0];
 }
 
@@ -41,5 +42,5 @@ module.exports = {
     create,
     update,
     remove,
-    findByEmail,
+    findByCredentials,
 };
