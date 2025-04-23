@@ -65,10 +65,19 @@ async function deleteOrder(id) {
     await orderProductDAO.removeByOrderId(id);
 }
 
+async function getOrdersByClientId(clientId) {
+    const orders = await orderDAO.findByClientId(clientId);
+    for (const order of orders) {
+        order.products = await orderProductDAO.findByOrderId(order.id);
+    }
+    return orders;
+}
+
 module.exports = {
     getAllOrders,
     getOrder,
     createOrder,
     updateOrder,
     deleteOrder,
+    getOrdersByClientId,
 };

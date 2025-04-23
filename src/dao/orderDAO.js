@@ -30,10 +30,17 @@ async function remove(id) {
     await pool.query('DELETE FROM order_ WHERE id = ?', [id]);
 }
 
+async function findByClientId(clientId) {
+    let query = `SELECT * FROM order_ WHERE client_id = '${clientId}'`;
+    const [result] = await pool.query(query);
+    return result;
+}
+
 module.exports = {
     findAll,
     findById,
     create,
     update,
     remove,
+    findByClientId,
 };
